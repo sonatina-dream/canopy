@@ -1,0 +1,19 @@
+[package]
+name = "canopy-test-windows"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "A throwaway app with a few plain windows for Canopy's end-to-end test."
+
+[[bin]]
+name = "CanopyTestWindows"
+path = "src/main.rs"
+
+[dependencies]
+dispatch2 = "0.3"
+objc2.workspace = true
+objc2-foundation = { workspace = true, features = ["NSArray", "NSGeometry", "NSNotification", "NSObject", "NSRunLoop", "NSString", "NSThread"] }
+objc2-app-kit = { workspace = true, features = [
+    "NSApplication", "NSColor", "NSControl", "NSFont", "NSGraphics", "NSResponder", "NSRunningApplication", "NSScreen", "NSText", "NSTextField", "NSView", "NSWindow", "NSWindowRestoration",
+] }
+serde_json = "1"

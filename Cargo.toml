@@ -1,0 +1,27 @@
+[workspace]
+members = ["crates/canopy-core", "crates/canopy", "crates/canopy-test-windows"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+canopy-core = { path = "crates/canopy-core" }
+# Zed's GPUI, pinned: its published crate is a year behind, and this has to run on macOS 27.
+gpui = { git = "https://github.com/zed-industries/zed", rev = "99e70ee4a02d8dcf1b72f487f81aaf0d3be74f76" }
+# font-kit is what draws text on macOS: without it GPUI builds fine and shows none.
+gpui_platform = { git = "https://github.com/zed-industries/zed", rev = "99e70ee4a02d8dcf1b72f487f81aaf0d3be74f76", features = ["font-kit"] }
+objc2 = "0.6"
+objc2-foundation = { version = "0.3", default-features = false, features = ["std"] }
+objc2-app-kit = { version = "0.3", default-features = false, features = ["std"] }
+block2 = "0.6"
+
+[profile.dev]
+opt-level = 1
+debug = "line-tables-only"
+
+[profile.release]
+lto = "thin"
+strip = true

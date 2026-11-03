@@ -1,0 +1,10 @@
+[package]
+name = "canopy-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Canopy's platform-neutral model: layout tree, solver, drop resolution, camera and history, URL commands, persistence."
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

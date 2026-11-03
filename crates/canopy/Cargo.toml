@@ -1,0 +1,47 @@
+[package]
+name = "canopy"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "A macOS window manager that docks real windows, nests them, and zooms a camera over the arrangement."
+
+[[bin]]
+name = "Canopy"
+path = "src/main.rs"
+
+[features]
+# Adds harness commands that render windows offscreen to PNG files, with
+# synthetic pictures: no screen capture, so nothing real is in them.
+snapshots = ["gpui/test-support", "gpui_platform/test-support", "image/png"]
+
+[dependencies]
+canopy-core.workspace = true
+gpui.workspace = true
+gpui_platform.workspace = true
+objc2.workspace = true
+block2.workspace = true
+objc2-foundation = { workspace = true, features = [
+    "block2", "NSArray", "NSAppleScript", "NSBundle", "NSData", "NSDictionary", "NSEnumerator", "NSError", "NSGeometry", "NSKeyValueCoding",
+    "NSNotification", "NSObject", "NSOperation", "NSProcessInfo", "NSRange", "NSString", "NSThread", "NSURL", "NSUserDefaults", "NSValue",
+] }
+objc2-app-kit = { workspace = true, features = [
+    "block2", "libc", "objc2-core-graphics", "NSAlert", "NSAnimation", "NSAnimationContext", "NSApplication", "NSBitmapImageRep", "NSButton", "NSButtonCell",
+    "NSCell", "NSColor", "NSColorSpace", "NSControl", "NSCursor", "NSEvent", "NSGraphics", "NSGraphicsContext", "NSImage", "NSImageRep", "NSMenu", "NSMenuItem", "NSPanel",
+    "NSResponder", "NSRunningApplication", "NSScreen", "NSStatusBar", "NSStatusBarButton", "NSStatusItem", "NSView", "NSWindow", "NSWorkspace",
+] }
+objc2-screen-capture-kit = { version = "0.3", default-features = false, features = [
+    "std", "block2", "objc2-core-foundation", "objc2-core-graphics", "SCScreenshotManager", "SCShareableContent", "SCStream",
+] }
+objc2-core-graphics = { version = "0.3", default-features = false, features = ["std", "CGEvent", "CGEventTypes", "CGImage"] }
+objc2-core-foundation = { version = "0.3", default-features = false, features = ["std", "CFCGTypes"] }
+dispatch2 = "0.3"
+core-foundation = "0.10"
+core-foundation-sys = "0.8"
+anyhow = "1"
+futures = "0.3"
+image = { version = "0.25", default-features = false }
+log = "0.4"
+raw-window-handle = "0.6"
+serde_json = "1"
+signal-hook = "0.3"
+smallvec = "1"
